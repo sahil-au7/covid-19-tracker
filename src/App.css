@@ -4,6 +4,13 @@
 
 body {
   background-color: #f5f6fa;
+  background-image: url("https://media.istockphoto.com/vectors/novel-coronavirus-background-wuhan-virus-vector-id1202673330?k=6&m=1202673330&s=170667a&w=0&h=QUohKafwKs0yUWlCwKULxWH4ZosmYndOeMmyQ4Yvcsc=");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app__dropdown {
+  background-color: white;
 }
 
 .app {
@@ -22,10 +29,9 @@ body {
 .app__flag {
   display: flex;
   justify-content: center;
-  max-width: 100%;
+  max-width: 100px;
   max-height: 80px;
   object-fit: contain;
-  border: 1px solid lightgray;
 }
 
 .app__headerTitle {
@@ -45,4 +51,23 @@ body {
   .app {
     flex-direction: column;
   }
+}
+
+.app__rightTable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app__rightTableDropdown {
+  height: 35px;
+}
+
+.app__rightTableDropdownMenu {
+  display: flex;
+}
+
+.app__rightTitle {
+  font-size: 25px;
+  margin-right: 15px;
 }

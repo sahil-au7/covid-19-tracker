@@ -8,12 +8,16 @@ import {
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import InfoBox from "./components/InfoBox";
+import Table from "./components/Table";
 import Map from "./components/Map";
+import { sortData } from "./utilities/util";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [flag, setFlag] = useState("");
+  const [tableData, setTableData] = useState([]);
+  const [sortBy, setSortBy] = useState("cases");
 
   useEffect(async () => {
     await fetch("https://disease.sh/v3/covid-19/all")
@@ -30,11 +34,14 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          console.log(sortBy);
+          const sortedData = sortData(data, sortBy);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
     fetchingData();
-  }, []);
+  }, [sortBy]);
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
@@ -48,9 +55,16 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-        setFlag(data.countryInfo.flag);
-        // console.log(data);
+        if (countryCode !== "worldwide") {
+          setFlag(data.countryInfo.flag);
+        }
       });
+  };
+
+  const sortDataBy = (event) => {
+    const sort = event.target.value;
+    console.log(sort);
+    setSortBy(sort);
   };
 
   return (
@@ -59,9 +73,12 @@ function App() {
         <div className="app__header">
           <h1 className="app__headerTitle">COVID-19 TRACKER</h1>
           {country === "worldwide" ? (
-            <></>
+            <img
+              className="app__flag"
+              src="https://www.pikpng.com/pngl/m/209-2093609_globe-black-and-white-png-world-globe-black.png"
+              alt=""
+            />
           ) : (
-            // console.log(">>>>>>>> line 62", flag)
             <img className="app__flag" src={flag} alt="" />
           )}
           <FormControl className="app__dropdown">
@@ -71,7 +88,7 @@ function App() {
               onChange={onCountryChange}
             >
               <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
+              {countries?.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
             </Select>
@@ -99,8 +116,25 @@ function App() {
       </div>
       <Card className="app__right">
         <CardContent>
-          <h3>Live Cases by Country</h3>
-          {/* <Table /> */}
+          <div className="app__rightTable">
+            <h3 className="app__rightTitle">Live Cases by Country</h3>
+            <FormControl className="app__rightTableDropdownMenu">
+              <p>SortBy: </p>
+              <Select
+                variant="outlined"
+                value={sortBy}
+                onChange={sortDataBy}
+                className="app__rightTableDropdown"
+              >
+                <MenuItem value="cases">Cases</MenuItem>
+                <MenuItem value="active">Active</MenuItem>
+                <MenuItem value="deaths">Deaths</MenuItem>
+                <MenuItem value="recovered">Recovered</MenuItem>
+                <MenuItem value="critical">Critical</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <Table countries={tableData} sortBy={sortBy} />
           <h3>Worldwide new Cases</h3>
           {/* <Graph /> */}
         </CardContent>

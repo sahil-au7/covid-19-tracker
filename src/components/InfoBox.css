@@ -1,3 +1,4 @@
-/* .infoBox {
+.infoBox {
   display: flex;
-} */
+  min-width: 180px;
+}
