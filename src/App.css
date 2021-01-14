@@ -59,12 +59,14 @@ body {
   justify-content: space-between;
 }
 
-.app__rightTableDropdown {
-  height: 35px;
+.app__rightTableDropdownSort {
+  margin-left: 20px;
 }
 
-.app__rightTableDropdownMenu {
-  display: flex;
+.app__rightTableDropdown {
+  height: 35px;
+  margin-left: 20px;
+  margin-right: 10px;
 }
 
 .app__rightTitle {

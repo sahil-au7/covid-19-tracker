@@ -11,6 +11,7 @@ import InfoBox from "./components/InfoBox";
 import Table from "./components/Table";
 import Map from "./components/Map";
 import { sortData } from "./utilities/util";
+import LineGraph from "./components/LineGraph";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
@@ -34,14 +35,15 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
-          console.log(sortBy);
           const sortedData = sortData(data, sortBy);
+          // console.log(sortBy);
+          // console.log(sortedData);
           setTableData(sortedData);
           setCountries(countries);
         });
     };
     fetchingData();
-  }, [sortBy]);
+  }, []);
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
@@ -63,7 +65,6 @@ function App() {
 
   const sortDataBy = (event) => {
     const sort = event.target.value;
-    console.log(sort);
     setSortBy(sort);
   };
 
@@ -112,6 +113,7 @@ function App() {
             total={countryInfo.deaths}
           />
         </div>
+        {/* Map */}
         <Map />
       </div>
       <Card className="app__right">
@@ -119,7 +121,7 @@ function App() {
           <div className="app__rightTable">
             <h3 className="app__rightTitle">Live Cases by Country</h3>
             <FormControl className="app__rightTableDropdownMenu">
-              <p>SortBy: </p>
+              <p className="app__rightTableDropdownSort">SortBy: </p>
               <Select
                 variant="outlined"
                 value={sortBy}
@@ -134,9 +136,11 @@ function App() {
               </Select>
             </FormControl>
           </div>
+          {/* Table */}
           <Table countries={tableData} sortBy={sortBy} />
           <h3>Worldwide new Cases</h3>
           {/* <Graph /> */}
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
