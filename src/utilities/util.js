@@ -9,3 +9,7 @@ export const sortData = (data, item) => {
   });
   return sortedData;
 };
+
+export const showDataOnMap = () => {
+  const data = 0;
+};

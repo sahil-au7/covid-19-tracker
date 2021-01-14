@@ -12,6 +12,7 @@ import Table from "./components/Table";
 import Map from "./components/Map";
 import { sortData } from "./utilities/util";
 import LineGraph from "./components/LineGraph";
+import "leaflet/dist/leaflet.css";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
@@ -138,7 +139,7 @@ function App() {
           </div>
           {/* Table */}
           <Table countries={tableData} sortBy={sortBy} />
-          <h3>Worldwide new Cases</h3>
+          <h3 className="app__rightTitle2">Worldwide new Cases</h3>
           {/* <Graph /> */}
           <LineGraph />
         </CardContent>

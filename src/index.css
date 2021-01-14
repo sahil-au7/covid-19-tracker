@@ -1,3 +1,12 @@
+html {
+  background: url("https://media.istockphoto.com/vectors/novel-coronavirus-background-wuhan-virus-vector-id1202673330?k=6&m=1202673330&s=170667a&w=0&h=QUohKafwKs0yUWlCwKULxWH4ZosmYndOeMmyQ4Yvcsc=")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
