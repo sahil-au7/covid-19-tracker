@@ -1,3 +1,14 @@
-.lineGraph {
-  max-width: 300px;
+.lineGraph__titleOptions {
+  display: flex;
 }
+.lineGraph {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* .lineGraph__data {
+  display: flex;
+  max-height: 260px;
+  margin-top: 15px;
+} */

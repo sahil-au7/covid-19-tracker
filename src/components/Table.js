@@ -1,14 +1,15 @@
 import React from "react";
 import "./table.css";
-
+import { format } from "../utilities/util";
 const Table = ({ countries, sortBy }) => {
   return (
     <div className="table">
+      {/* {console.log(sortBy, countries)} */}
       {countries.map((country) => (
         <tr>
           <td>{country.country}</td>
           <td>
-            <strong>{country[sortBy]}</strong>
+            <strong>{format(country[sortBy])}</strong>
           </td>
         </tr>
       ))}
