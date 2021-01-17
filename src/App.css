@@ -85,4 +85,6 @@
 
 .app__graph {
   flex-grow: 1;
+  height: 220px;
+  margin-top: 10px;
 }
